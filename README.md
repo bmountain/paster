@@ -2,5 +2,5 @@
 
 使い方
 ```
-python xlimg_py test.txt
+python xlimg_py/app.py test.txt
 ```
