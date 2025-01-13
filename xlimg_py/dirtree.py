@@ -7,8 +7,8 @@ def get_number(s):
     pattern = r"(\d+)(?!.*\d)"
     return int(re.search(pattern, s).group())
 
-def get_file_dict(textfile):
-    """テキストファイル名を渡すとそこに書かれたディレクトリ一覧を読み込む
+def get_dirtree(textfile):
+    """テキストファイルのパスを渡すとそこに書かれたディレクトリ一覧を読み込む
     そのディレクトリがあることを検証する
     各ディレクトリとその中の画像すべてのパスをnamedtupleのリストとして返す
     """
@@ -29,6 +29,3 @@ def get_file_dict(textfile):
         res.append(dir_data)
     os.chdir(cwd)
     return res
-
-if __name__ == '__main__':
-    print(get_file_dict('test.txt'))
