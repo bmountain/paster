@@ -1,0 +1,7 @@
+*.png
+*__pycache__*
+*.venv*
+*.xlsx
+~*
+*.txt
+!*requirements.txt
