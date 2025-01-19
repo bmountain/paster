@@ -1,4 +1,0 @@
-#!/bin/bash
-target_file=$(realpath $1)
-source /usr/bin/xlimg_py/.venv/Scripts/activate
-python /usr/bin/xlimg_py/app.py $target_file

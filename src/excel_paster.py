@@ -19,25 +19,31 @@ ROW_GAP_BIG = 2 #ディレクトリが切り替わるとき何行空けるか
 
 class ExcelPaster:
     
-    def __init__(self):
+    def __init__(self, dirtree, out=None):
         self.row = 1
         self.col = 1
         self.dir_idx = 0
         self.wb = Workbook()
         self.ws = self.wb.active
+        self.dirtree = dirtree
+        self.out = out
     
-    def run(self, dir_tree):
-        self.write_all_dir(dir_tree)
+    def run(self):
+        self.write_all_dir()
         self.save()
         self.wb.close()
     
     
     def save(self):
-        book_name = f'{datetime.datetime.now():%Y%m%d%H%M%S}.xlsx'
+        if self.out is None:
+            book_name = f'{datetime.datetime.now():%Y%m%d%H%M%S}.xlsx'
+        else:
+            book_name = self.out
         self.wb.save(book_name)
+        print('保存しました >', book_name)
     
-    def write_all_dir(self, dir_tree):
-        for dir_data in dir_tree:
+    def write_all_dir(self):
+        for dir_data in self.dirtree:
             self.write_one_dir(dir_data)
             self.row += ROW_GAP_BIG
 
