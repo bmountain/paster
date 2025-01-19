@@ -2,5 +2,8 @@
 
 使い方
 ```
-python xlimg_py/app.py test.txt
+python paster.py --dirname testdir --out test.xlsx
 ```
+
+- --dirname / -d : 画像保存先の親ディレクトリ
+- --out / -o : 出力するブック名
