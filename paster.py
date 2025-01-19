@@ -1,7 +1,6 @@
-import sys
-sys.path.append('./src')
-from src.excel_paster import ExcelPaster
-from src.dirtree import get_dirtree
+from pathlib import Path
+from src import excel_paster
+from src import dirtree
 import argparse
 
 def parser():
@@ -14,8 +13,8 @@ def parser():
 
 def main():
     dirname, out = parser()
-    dirtree = get_dirtree(dirname)
-    paster = ExcelPaster(dirtree, out)
+    dir_tree = dirtree.get_dirtree(dirname)
+    paster = excel_paster.ExcelPaster(dir_tree, out)
     paster.run()
 
 if __name__ == '__main__':
