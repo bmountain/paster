@@ -14,10 +14,9 @@ def get_number(s):
         raise ParseException('子ディレクトリに数字を含まないものがある')
 
 def get_dirtree(dirname):
-    """テキストファイルのパスを渡すとそこに書かれたディレクトリ一覧を読み込む
-    そのディレクトリがあることを検証する
-    各ディレクトリとその中の画像すべてのパスをnamedtupleのリストとして返す
-    """
+    """ディレクトリ名を渡すとその配下のディレクトリとその中の画像一覧をディレクトリツリーとして返す
+"""
+
     cwd = Path.cwd()
     parent = Path.cwd() / Path(dirname)
     dirs = [parent / Path(child) for child in os.listdir(parent)]

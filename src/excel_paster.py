@@ -3,10 +3,7 @@ from openpyxl.drawing.image import Image
 from openpyxl.drawing.xdr import XDRPositiveSize2D
 from openpyxl.utils.units import pixels_to_EMU as p2e, pixels_to_points
 from openpyxl.drawing.spreadsheet_drawing import OneCellAnchor, AnchorMarker
-
 import math, datetime
-
-from dirtree import get_dirtree
 
 DPI = 96 # ディスプレイのDPI
 IMG_HEIGHT = 200 # 画像の高さ
