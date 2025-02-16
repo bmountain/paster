@@ -60,7 +60,7 @@ def load_json_config(json_path: Path | None = None) -> Config:
     """jsonを読み込んでConfigを返す"""
     if json_path is None:
         json_path = Path(__file__).parent.parent / Path("config.json")
-    with open(json_path, "r") as f:
+    with open(json_path, mode="r", encoding="utf-8") as f:
         config = json.load(f)
 
     return Config(**config)
