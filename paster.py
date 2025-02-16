@@ -1,8 +1,8 @@
-from src.paster_utils import get_params, get_children
+from src.paster_utils import get_config, get_children
 from src.paster_app import ExcelPaster
 
 
-params = get_params()
-children = get_children(params.dirname)
-paster = ExcelPaster(params, children)
+config = get_config()
+children = get_children(config.dirname)
+paster = ExcelPaster(config, children)
 paster.run()
