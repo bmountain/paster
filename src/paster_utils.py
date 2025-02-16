@@ -11,11 +11,11 @@ def get_number(s: str) -> int:
         pattern = r"(\d+)(?!.*\d)"
         return int(re.search(pattern, s).group())
     except:
-        raise Exception("画像ファイル名に整数が含まれない")
+        raise Exception("画像ファイル名のパースに失敗しました。")
 
 
 def get_children(dirname: str) -> Children:
-    """ディレクトリ名を渡すとその配下のディレクトリとその中の画像一覧をディレクトリツリーとして返す"""
+    """ディレクトリ名を渡すとその配下のディレクトリとその中の画像一覧を返す"""
 
     # 引数として与えられたディレクトリの子一覧を取得する
     parent = Path(dirname)
@@ -23,7 +23,7 @@ def get_children(dirname: str) -> Children:
     try:
         children_path.sort(key=lambda child: int(child.name))
     except:
-        raise Exception("子ディレクトリの名前が整数ではない")
+        raise Exception("子ディレクトリの名前が整数ではありません。")
 
     children = []
     for child in children_path:
