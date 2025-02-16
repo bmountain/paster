@@ -1,0 +1,12 @@
+{
+    "dpi": 96,
+    "max_height": "700",
+    "max_width": "1000",
+    "n_cols": 1,
+    "col_gap": 0,
+    "row_gap_small": 1,
+    "row_gap_big": 2,
+    "row_height_point": 13,
+    "prefix": "No. ",
+    "suffix": null
+}
