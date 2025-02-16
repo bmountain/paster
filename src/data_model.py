@@ -1,46 +1,43 @@
 from pydantic import BaseModel, Field
 from pathlib import Path
 
-# jsonと引数から読み込む設定
-
 
 class Config(BaseModel):
     """設定全体"""
 
     # 使用環境
-    dpi: int = Field(gt=0, default=96)  # ディスプレイのDPI
+    dpi: int = Field(gt=0, default=96, description="ディスプレイのDPI")
 
     # リサイズ
-    max_height: int = Field(gt=0)  # 最大高さ
-    max_width: int = Field(gt=0)  # 最大の幅
+    max_height: int = Field(gt=0, description="画像の最大高さ（ピクセル）")
+    max_width: int = Field(gt=0, description="画像の最大幅（ピクセル）")
 
     # レイアウト
-    n_cols: int = Field(gt=0)  # 画像を何列で貼るか
-    col_gap: int = Field(ge=0)  # 横並びの画像間で何列空けるか
-    row_gap_small: int = Field(ge=0)  # 同じディレクトリ内で改行するとき何行空けるか
-    row_gap_big: int = Field(ge=0)  # ディレクトリが切り替わるとき何行空けるか
-    row_height_point: int = Field(gt=0)  # Excelシートの行幅
+    n_cols: int = Field(gt=0, description="画像を何列で貼るか")
+    col_gap: int = Field(ge=0, description="横並びの画像間で何列空けるか")
+    row_gap_small: int = Field(
+        ge=0, description="同じディレクトリ内で改行するとき何行空けるか"
+    )
+    row_gap_big: int = Field(
+        ge=0, description="ディレクトリが切り替わるとき何行空けるか"
+    )
+    row_height_point: int = Field(gt=0, description="Excelシートの行幅")
 
     # 項番
-    prefix: str | None  # 項番の接頭辞
-    suffix: str | None  # 項番の接尾辞
+    prefix: str | None = Field(description="項番の接頭辞")
+    suffix: str | None = Field(description="項番の接尾辞")
+
+    dirname: str | None = Field(default=None, description="親ディレクトリ")
+    out: str | None = Field(default=None, description="出力するファイルの名前")
 
 
 class Argument(BaseModel):
-    """引数"""
+    """実行時引数"""
 
-    dirname: str  # 親ディレクトリ
-    out: str  # 出力するファイル名
-    prefix: str | None  # 項番の接頭辞
-    suffix: str | None  # 項番の接尾辞
-
-
-class Params(BaseModel):
-    """設定と引数"""
-
-    config: Config
-    dirname: str
-    out: str
+    dirname: str = Field(description="親ディレクトリ")
+    out: str = Field(description="出力するファイル名")
+    prefix: str | None = Field(default=None, description="項番の接頭辞")
+    suffix: str | None = Field(default=None, description="項番の接尾辞")
 
 
 # 画像パスの情報

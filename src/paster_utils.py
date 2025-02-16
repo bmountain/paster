@@ -2,7 +2,7 @@ import re
 import argparse
 import json
 from pathlib import Path
-from .data_model import Config, Argument, Params, Child, Children
+from .data_model import Config, Argument, Child, Children
 
 
 def get_number(s: str) -> int:
@@ -66,8 +66,8 @@ def load_json_config(json_path: Path | None = None) -> Config:
     return Config(**config)
 
 
-def get_params() -> Params:
-    """jsonと引数からParamsを作る"""
+def get_config() -> Config:
+    """jsonと引数からConfigを作る"""
     config: Config = load_json_config()
     argument: Argument = parse()
 
@@ -77,6 +77,6 @@ def get_params() -> Params:
     if argument.suffix:
         config.suffix = argument.suffix
 
-    params = {"config": config, "dirname": argument.dirname, "out": argument.out}
+    config = config.model_dump() | {"dirname": argument.dirname, "out": argument.out}
 
-    return Params(**params)
+    return Config(**config)
